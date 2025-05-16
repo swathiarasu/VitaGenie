@@ -43,24 +43,19 @@ bash
 ## Steps to run this project
 
 1. To spawn a container
-   > docker build -t rag-app .
+   > docker build -t health-app .
 
 2. To downloading the corpus
-   > GPU: `docker run --gpus all -v ./.kaggle:/root/.kaggle --entrypoint bash rag-app entrypoints/download_corpus.sh`
+   > GPU: `docker run --gpus all -v ./.kaggle:/root/.kaggle --entrypoint bash health-app entrypoints/download_corpus.sh`
    >
-   > CPU: `docker run -v ./.kaggle:/root/.kaggle --entrypoint bash rag-app entrypoints/download_corpus.sh`
+   > CPU: `docker run -v ./.kaggle:/root/.kaggle --entrypoint bash health-app entrypoints/download_corpus.sh`
 
-3. To get the vector embeddings of the corpus
-   > GPU: `docker run --gpus all --entrypoint bash rag-app entrypoints/build_index.sh`
+3. To run the app
+   > GPU: `docker run -d --gpus all -p 8501:8501 health-app`
    >
-   > CPU: `docker run --entrypoint bash rag-app entrypoints/build_index.sh`
+   > CPU: `docker run -d -p 8501:8501 health-app`
 
-4. To run the app
-   > GPU: `docker run -d --gpus all -p 8501:8501 rag-app`
-   >
-   > CPU: `docker run -d -p 8501:8501 rag-app`
-
-5. To access the app, open your browser and go to: `http://<external-ip>:8501`
+4. To access the app, open your browser and go to: `http://<external-ip>:8501`
 
 
 
